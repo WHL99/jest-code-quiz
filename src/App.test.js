@@ -3,7 +3,7 @@ import App, { replaceCamelWithSpaces } from './App';
 
 test('button has correct initial color', () => {
   render(<App />)
-  const colorBtn = screen.getByRole('button', { name: /change to MidnightBlue/i })
+  const colorBtn = screen.getByRole('button', { name: /change to Midnight Blue/i })
   expect(colorBtn).toHaveStyle({ backgroundColor: 'MediumVioletRed' })
 
 
@@ -20,12 +20,12 @@ test('initial consitions', () => {
   render(<App />)
 
   //check the button starts out enabled
-  const colorBtn = screen.getByRole('button', { name: /change to MidnightBlue/i })
+  const colorBtn = screen.getByRole('button', { name: /change to Midnight Blue/i })
   expect(colorBtn).toBeEnabled()
 
   //check the checkbox starts out unchecked
   const checkbox = screen.getByRole('checkbox')
-  expect(checkbox).toBeChecked()
+  expect(checkbox).not.toBeChecked()
 })
 
 
@@ -36,10 +36,10 @@ test('Checkbox disables button on first click and enables on second click', () =
   const colorBtn = screen.getByRole('button')
 
   fireEvent.click(checkBox)
-  expect(colorBtn).toBeEnabled()
+  expect(colorBtn).toBeDisabled()
 
   fireEvent.click(checkBox)
-  expect(colorBtn).toBeDisabled()
+  expect(colorBtn).toBeEnabled()
 });
 
 test('Disable button then button turns gray', () => {
@@ -49,10 +49,10 @@ test('Disable button then button turns gray', () => {
   const colorBtn = screen.getByRole('button')
 
   fireEvent.click(checkBox)
-  expect(colorBtn).toHaveStyle({ backgroundColor: 'red' })
-  fireEvent.click(checkBox)
   expect(colorBtn).toHaveStyle({ backgroundColor: 'gray' })
 
+  fireEvent.click(checkBox)
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'MediumVioletRed' })
 });
 
 test('Clicked disabled button has gray background and reverts to blue', () => {
@@ -66,7 +66,7 @@ test('Clicked disabled button has gray background and reverts to blue', () => {
   expect(colorBtn).toHaveStyle({ backgroundColor: 'gray' })
 
   fireEvent.click(checkBox)
-  expect(colorBtn).toHaveStyle({ backgroundColor: 'blue' })
+  expect(colorBtn).toHaveStyle({ backgroundColor: 'MidnightBlue' })
 });
 
 describe('Spaces before camel-case capital letters', () => {

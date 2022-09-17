@@ -10,7 +10,7 @@ function App() {
 
   const [buttonColor, setButtonColor] = useState('MediumVioletRed')
   const newButtonColor = buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed'
-  const [disabled, setDisabled] = useState('flase')
+  const [disabled, setDisabled] = useState(false)
 
   return (
     <div className="App">
